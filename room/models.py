@@ -26,6 +26,14 @@ class Room(models.Model):
 class Time(models.Model):
     '''
     '''
+    uuid = models.UUIDField(
+            primary_key=True,
+            unique=True,
+            editable=False,
+            default=uuid.uuid4,
+            verbose_name='PK'
+        )
+        
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='times')
     
     start_time = models.DateTimeField()

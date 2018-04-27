@@ -76,12 +76,20 @@ export default class TimeList extends React.Component {
                   endTime={end_time}
                   interviewee={interviewee}
                   interviewer={interviewer}
+                  name={this.props.name}
                 />
             );
           })
 
         return (
             <View style={[styles.container]}>
+
+                <View style={[styles.roomTitle]}>
+                    <Text style={[styles.roomTitleText]}>
+                        {this.props.name}
+                    </Text>
+                </View>
+
                 <ScrollView style={styles.scroll} >
                     {lists}
                 </ScrollView>
@@ -96,6 +104,22 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff'
-    }
+        backgroundColor: '#17273d'
+    },
+    roomTitle: {
+        alignItems:'center',
+        width:"100%",
+        height: 200,
+        paddingTop:80,
+        paddingBottom:80,
+        color:"white"
+        
+
+    },
+    roomTitleText: {
+        fontSize:50,
+        fontWeight:"bold",
+        color:"white"
+        
+    },
 })

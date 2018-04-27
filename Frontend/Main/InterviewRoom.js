@@ -13,12 +13,11 @@ class InterviewRoom extends React.Component {
 
         return (
             <View style={[styles.container]}>
-                <Text style={{fontSize:40, color:'black', alignItems: 'center'}}>{this.props.name}</Text>
-                {/* <Button title={this.props.name} />                 */}
-                <Button rounded warning onPress={() => {
-                    Actions.timeList({ pk: this.props.pk})
+               
+                <Button style={[styles.roomButton]} rounded onPress={() => {
+                    Actions.timeList({ pk: this.props.pk, name: this.props.name})
                 }}>
-                    <Text>{this.props.name} </Text>
+                    <Text style={[styles.buttonText]}>{this.props.name} </Text>
                 </Button>
                     
             </View>
@@ -35,6 +34,24 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff'
+        backgroundColor: '#17273d'
+    },
+    roomButton:{
+        width:600,
+        height:150,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:"#ff5000"
+
+    },
+    buttonText: {
+        fontSize:35,
+        fontWeight:"bold",
+        color:'#fff',
+        paddingBottom:20,
+        paddingTop:20,
+        paddingRight:20,
+        paddingLeft:40,
+        alignItems:'center'
     }
 });

@@ -59,15 +59,16 @@ export default class RoomList extends React.Component {
                   key={pk}
                   pk={pk}
                   name={name}
+                  style={[styles.container]}
                 />
             );
           })
 
         return (
             <View style={[styles.container]}>
-                <ScrollView style={styles.scroll} >
+                <View style={[styles.scroll]} >
                     {lists}
-                </ScrollView>
+                </View>
             </View>
 
         )
@@ -77,8 +78,15 @@ export default class RoomList extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:"#17273d",
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff'
+        
+    },
+    scroll: {
+        justifyContent: 'space-between',
+        backgroundColor:"#17273d",
+
+        
     }
 })

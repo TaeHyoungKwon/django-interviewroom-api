@@ -7,5 +7,5 @@ app_name='room'
 
 urlpatterns = [
     path('api/room_list/', views.RoomAPIView.as_view(), name="room_list"),
-    path('api/time_list/', views.TimeAPIView.as_view(), name="time_list"),
+    path('api/time_list/<slug:time_pk>', views.TimeAPIView.as_view(), name="time_list"),
 ]

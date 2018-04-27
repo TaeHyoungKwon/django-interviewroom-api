@@ -12,5 +12,9 @@ class RoomAPIView(generics.ListCreateAPIView):
 
 
 class TimeAPIView(generics.ListCreateAPIView):
-    queryset = Time.objects.all()
     serializer_class = TimeSerializer
+
+    def get_queryset(self):
+        time_pk = self.kwargs['time_pk']
+        qs = Time.objects.filter(room=time_pk)
+        return qs

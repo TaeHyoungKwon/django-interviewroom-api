@@ -27,7 +27,10 @@ export default class TimeList extends React.Component {
 
 
     getListData() {
-        console.log("RoomList")
+        console.log("TimeList")
+        console.log(this.props.pk)
+        
+        
         return fetch('http://10.2.236.67:8000/api/time_list/' + this.props.pk)
           .then((response) => response.json())
           .then((responseJson) => {
@@ -50,14 +53,29 @@ export default class TimeList extends React.Component {
     render() {
 
         let lists = this.state.datas.map((data, index) => {
-            const { pk, name } = data;
-            console.log(pk);
-            console.log(name);
+            const { 
+                room, 
+                start_time, 
+                end_time, 
+                interviewee, 
+                interviewer,
+                pk } = data;
+
+            console.log(room);
+            console.log(start_time);
+            console.log(end_time);
+            console.log(interviewee);
+            console.log(interviewer);
       
             return (
-                <InterviewRoom
+                <InterviewTime
                   key={pk}
-                  name={name}
+                  pk={pk}
+                  room={room}
+                  startTime={start_time}
+                  endTime={end_time}
+                  interviewee={interviewee}
+                  interviewer={interviewer}
                 />
             );
           })

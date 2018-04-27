@@ -4,10 +4,11 @@ import { Container, Header, Content,Button } from 'native-base';
 
 import {Actions} from 'react-native-router-flux'
 
-class Room extends React.Component {
+class InterviewRoom extends React.Component {
     render() {
         console.log("kwontaehyoung")
         console.log(this.props.name);
+        console.log(this.props.pk)
         
 
         return (
@@ -26,7 +27,7 @@ class Room extends React.Component {
     }
 }
 
-export default Room;
+export default InterviewRoom;
 
 const styles = StyleSheet.create({
 

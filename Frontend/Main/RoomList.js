@@ -57,6 +57,7 @@ export default class RoomList extends React.Component {
             return (
                 <InterviewRoom
                   key={pk}
+                  pk={pk}
                   name={name}
                 />
             );

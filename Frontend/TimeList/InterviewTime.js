@@ -4,7 +4,7 @@ import { Container, Header, Content,Button } from 'native-base';
 
 import {Actions} from 'react-native-router-flux'
 
-class Room extends React.Component {
+class InterviewTime extends React.Component {
     render() {
         console.log("kwontaehyoung")
         console.log(this.props.name);
@@ -12,13 +12,27 @@ class Room extends React.Component {
 
         return (
             <View style={[styles.container]}>
-                <Text style={{fontSize:40, color:'black', alignItems: 'center'}}>{this.props.name}</Text>
+
+                
+                <Text style={{fontSize:40, color:'black', alignItems: 'center'}}>
+                    {this.props.startTime}            
+                </Text>
+
+                <Text style={{fontSize:40, color:'black', alignItems: 'center'}}>
+                    {this.props.endTime}            
+                </Text>
+
+                <Text style={{fontSize:40, color:'black', alignItems: 'center'}}>
+                    {this.props.interviewee}            
+                </Text>
+
+                <Text style={{fontSize:40, color:'black', alignItems: 'center'}}>
+                    {this.props.interviewer}            
+                </Text>
+
+
                 {/* <Button title={this.props.name} />                 */}
-                <Button rounded warning onPress={() => {
-                    Actions.timeList({ pk: this.props.pk})
-                }}>
-                    <Text>{this.props.name} </Text>
-                </Button>
+             
                     
             </View>
 
@@ -26,7 +40,7 @@ class Room extends React.Component {
     }
 }
 
-export default Room;
+export default InterviewTime;
 
 const styles = StyleSheet.create({
 

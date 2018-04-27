@@ -16,5 +16,5 @@ class TimeAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         time_pk = self.kwargs['time_pk']
-        qs = Time.objects.filter(room=time_pk)
+        qs = Time.objects.filter(room=time_pk).order_by("start_time")
         return qs

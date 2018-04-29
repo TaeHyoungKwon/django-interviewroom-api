@@ -28,7 +28,7 @@ export default class RoomList extends React.Component {
 
     getListData() {
         console.log("RoomList")
-        return fetch('http://10.2.236.67:8000/api/room_list')
+        return fetch('http://192.168.200.128:8000/api/room_list')
           .then((response) => response.json())
           .then((responseJson) => {
 

@@ -10,8 +10,12 @@ import {Actions} from 'react-native-router-flux'
 class InterviewTime extends React.Component {
 
     state ={
-        isSelected:false
+        isSelected:false,
+        
     }
+
+
+    
 
 
     render() {
@@ -27,7 +31,7 @@ class InterviewTime extends React.Component {
             <TouchableOpacity onPress={ () => {
                 console.log(this.state.isSelected);
                 this.setState({ isSelected: !this.state.isSelected})}}>
-                <View style={[styles.contents]}>
+                <View style={ this.state.isSelected ? styles.selectedContents: styles.contents }>
 
                     <View style={[styles.timeBox]}>
                         <Text style={[styles.startTimeText]}>{f_startTime} ~</Text>
@@ -44,13 +48,18 @@ class InterviewTime extends React.Component {
                         <Text style={[styles.intervieweeText]}>{this.props.interviewee}</Text>
                         
                     </View>
-                    <View style={[styles.isSelectedBall]}>
-                        <Text style={this.state.isSelected ? styles.isSelectedBallText: styles.isNotSelectedBallText}>
+
+                    { this.state.isSelected ? (
+                        <View style={[styles.isSelectedBall]}>
+                        <Text style= {styles.isSelectedBallText}>
                             ●
                         </Text>
                     </View>
+                    ) : null }
+                    
                 </View>
             </TouchableOpacity>
+
 
         )
     }
@@ -73,7 +82,20 @@ const styles = StyleSheet.create({
         borderTopWidth: 5,
         borderLeftWidth:1,
         borderColor:"#fff"
+    },
+
+    selectedContents: {
+        width: deviceWidth-80,
         
+        alignItems: 'flex-start',
+        flexDirection: "row",
+        marginLeft:40,
+        marginTop:10,
+        marginBottom:10,
+        //backgroundColor:'yellow'
+        borderTopWidth: 5,
+        borderLeftWidth:1,
+        borderColor:"#ff5000"
     },
 
     timeBox: {
@@ -100,12 +122,14 @@ const styles = StyleSheet.create({
         //backgroundColor: 'green',
         height: 120,
         marginLeft: 20,
-        marginTop: 20
+        marginTop: 20,
+        
         
     },
     intervieweeListTop: {
         fontSize:20,
-        color:"white"
+        color:"white",
+        marginBottom:20
     },
     intervieweeText: {
         fontSize:30,
@@ -130,7 +154,7 @@ const styles = StyleSheet.create({
         alignItems:"center"
     },
     isSelectedBallText: {
-        fontSize:100,
+        fontSize:80,
         color:"#ff5000"
     },
     isNotSelectedBallText: {

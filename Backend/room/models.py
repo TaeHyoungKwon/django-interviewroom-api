@@ -22,10 +22,15 @@ class Room(models.Model):
     def __str__(self):
         return str(self.name)
 
+    class Meta:
+        verbose_name = ("면접실")
+        verbose_name_plural = ("면접실")
     
+
 class Time(models.Model):
     '''
     '''
+    
     uuid = models.UUIDField(
             primary_key=True,
             unique=True,
@@ -37,13 +42,14 @@ class Time(models.Model):
     room = models.ForeignKey(
         Room, 
         on_delete=models.CASCADE, 
-        related_name='times')
+        related_name='times',
+        verbose_name='면접실')
     
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    start_time = models.DateTimeField(verbose_name='시작 시간') 
+    end_time = models.DateTimeField(verbose_name='끝나는 시간')
     
-    interviewee = models.TextField()
-    interviewer = models.TextField()
+    interviewee = models.TextField(verbose_name='면접자')
+    interviewer = models.TextField(verbose_name='면접관')
     
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -54,4 +60,7 @@ class Time(models.Model):
         
         return str(self.room) + ": " + "("+ f_start_t + " ~ " + f_end_t +")"
 
+    class Meta:
+        verbose_name = ("면접 시간표")
+        verbose_name_plural = ("면접 시간표")
 

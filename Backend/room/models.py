@@ -43,13 +43,27 @@ class Time(models.Model):
         Room, 
         on_delete=models.CASCADE, 
         related_name='times',
-        verbose_name='면접실')
+        verbose_name='면접실',
+        help_text="해당하는 면접실을 선택 혹은 추가하세요.")
     
-    start_time = models.DateTimeField(verbose_name='시작 시간') 
-    end_time = models.DateTimeField(verbose_name='끝나는 시간')
+    start_time = models.DateTimeField(
+        verbose_name='시작 시간',
+        help_text="면접 시작 시간을 선택하세요. ex)2018-01-01 00:00:00 "
+        ) 
+    end_time = models.DateTimeField(
+        verbose_name='종료 시간',
+        help_text="면접 종료 시간을 선택하세요. ex)2018-12-31 23:59:59 "
+        )
     
-    interviewee = models.TextField(verbose_name='면접자')
-    interviewer = models.TextField(verbose_name='면접관')
+    interviewee = models.TextField(
+        verbose_name='면접자',
+        help_text="공백을 기준으로 입력하세요. ex)면접자1 면접자2 면접자3 ..."
+        )
+
+    interviewer = models.TextField(
+        verbose_name='면접관',
+        help_text="공백을 기준으로 입력하세요. ex)면접관1 면접관2 면접관3 ..."
+        )
     
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)

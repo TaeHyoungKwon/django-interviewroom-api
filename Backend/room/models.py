@@ -34,7 +34,10 @@ class Time(models.Model):
             verbose_name='PK'
         )
         
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='times')
+    room = models.ForeignKey(
+        Room, 
+        on_delete=models.CASCADE, 
+        related_name='times')
     
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()

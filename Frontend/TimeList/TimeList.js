@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         height: 200,
         paddingTop:80,
         paddingBottom:80,
-        color:"white"
+        
         
 
     },

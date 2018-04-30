@@ -14,10 +14,20 @@ export default class TimeList extends React.Component {
 
   constructor(props) {
     super(props);
+
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth() + 1;
+    var date = today.getDate();
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+
+    var resultTime = year + "년 " + month + "월 " + date + "일 " + hours + "시 " + minutes + "분"
+
     this.state = {
       datas: [],
       isIndicator: true,
-      curTime: new Date().toLocaleString()
+      curTime: resultTime
     };
   }
 
@@ -27,7 +37,7 @@ export default class TimeList extends React.Component {
 
     this.intervalID = setInterval(
       () => this.tick(),
-      1000
+      60000
     );
   }
   componentWillUnmount() {
@@ -35,8 +45,17 @@ export default class TimeList extends React.Component {
   }
 
   tick() {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth() + 1;
+    var date = today.getDate();
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+
+    var resultTime = year + "년 " + month + "월 " + date + "일 " + hours + "시 " + minutes + "분"
+
     this.setState({
-      curTime: new Date().toLocaleString()
+      curTime: resultTime
     });
   }
 
@@ -46,7 +65,7 @@ export default class TimeList extends React.Component {
     console.log(this.props.pk)
 
 
-    return fetch('http://192.168.200.128:8000/api/time_list/' + this.props.pk)
+    return fetch('http://10.2.30.134:8001/api/time_list/' + this.props.pk)
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -67,6 +86,8 @@ export default class TimeList extends React.Component {
 
   render() {
 
+
+    
     let lists = this.state.datas.map((data, index) => {
       const {
         room,

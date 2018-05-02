@@ -6,7 +6,6 @@ import Actions from 'react-native-router-flux';
 import InterviewRoom from './InterviewRoom';
 
 export default class RoomList extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +20,7 @@ export default class RoomList extends React.Component {
 
   getListData() {
     console.log('RoomList');
-    return fetch('http://10.2.30.134:8001/api/room_list')
+    return fetch('http://192.168.1.68:8001/api/room_list')
       .then(response => response.json())
       .then(responseJson => {
         console.log(responseJson);
@@ -55,6 +54,10 @@ export default class RoomList extends React.Component {
 
     return (
       <View style={[styles.container]}>
+        <View style={[styles.header]}>
+          <Text style={[styles.headerText]}>SGE 면접실</Text>
+        </View>
+
         <View style={[styles.scroll]}>{lists}</View>
       </View>
     );
@@ -64,12 +67,23 @@ export default class RoomList extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#17273d',
-    justifyContent: 'center',
+    backgroundColor: '#C0C0C0',
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
   scroll: {
-    justifyContent: 'space-between',
-    backgroundColor: '#17273d'
+    backgroundColor: '#C0C0C0',
+    marginTop: 10
+  },
+  header: {
+    marginTop: 10,
+    width: '100%',
+    backgroundColor: 'gray',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  headerText: {
+    fontSize: 50,
+    color: '#fff'
   }
 });

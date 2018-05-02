@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, Alert, Dimensions } from 'react-native';
 import { Container, Header, Content, Button } from 'native-base';
 
 import { Actions } from 'react-native-router-flux';
+const { height: deviceHeight, width: deviceWidth } = Dimensions.get('window');
 
 class InterviewRoom extends React.Component {
   render() {
@@ -14,12 +15,13 @@ class InterviewRoom extends React.Component {
       <View style={[styles.container]}>
         <Button
           style={[styles.roomButton]}
-          rounded
+          full
           onPress={() => {
             Actions.timeList({ pk: this.props.pk, name: this.props.name });
           }}
         >
           <Text style={[styles.buttonText]}>{this.props.name} </Text>
+          <Text style={styles.buttonNextText}>{'      >'}</Text>
         </Button>
       </View>
     );
@@ -30,26 +32,29 @@ export default InterviewRoom;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#17273d'
+    backgroundColor: '#C0C0C0'
   },
   roomButton: {
-    width: 600,
-    height: 150,
+    width: deviceWidth,
+    height: 100,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ff5000'
+    backgroundColor: '#17273d',
+    marginBottom: 30
   },
   buttonText: {
-    fontSize: 35,
+    fontSize: 50,
     fontWeight: 'bold',
     color: '#fff',
-    paddingBottom: 20,
-    paddingTop: 20,
-    paddingRight: 20,
-    paddingLeft: 40,
-    alignItems: 'center'
+    paddingBottom: 10,
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingLeft: 10
+  },
+  buttonNextText: {
+    fontSize: 80,
+    color: '#fff'
+    //fontWeight: 'bold'
   }
 });

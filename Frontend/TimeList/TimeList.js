@@ -30,6 +30,16 @@ export default class TimeList extends React.Component {
 
     this.state = {
       datas: [],
+      times: [
+        '09:00~09:30',
+        '09:30~10:00',
+        '10:00~10:30',
+        '10:30~11:00',
+        '11:00~11:30',
+        '11:30~12:00',
+        '12:00~12:30',
+        '12:30~13:00'
+      ],
       isIndicator: true,
       curTime: resultTime
     };
@@ -73,7 +83,7 @@ export default class TimeList extends React.Component {
     console.log('TimeList');
     console.log(this.props.pk);
 
-    return fetch('http://10.2.30.134:8001/api/time_list/' + this.props.pk)
+    return fetch('http://192.168.1.68:8001/api/time_list/' + this.props.pk)
       .then(response => response.json())
       .then(responseJson => {
         console.log(responseJson);
@@ -90,6 +100,7 @@ export default class TimeList extends React.Component {
   }
 
   render() {
+    console.log(this.state.datas);
     let lists = this.state.datas.map((data, index) => {
       const { room, start_time, end_time, interviewee, interviewer, pk } = data;
 
@@ -110,10 +121,6 @@ export default class TimeList extends React.Component {
 
     return (
       <View style={[styles.container]}>
-        <View style={[styles.time]}>
-          <Text style={[styles.timeText]}>{this.state.curTime}</Text>
-        </View>
-
         <View style={[styles.roomTitle]}>
           <Text style={[styles.roomTitleText]}>{this.props.name}</Text>
         </View>
@@ -144,9 +151,9 @@ const styles = StyleSheet.create({
   roomTitle: {
     alignItems: 'center',
     width: '100%',
-
-    paddingTop: 50,
-    paddingBottom: 50
+    backgroundColor: '#17273d',
+    paddingTop: 10,
+    paddingBottom: 10
   },
 
   roomTitleText: {

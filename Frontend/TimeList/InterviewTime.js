@@ -43,63 +43,15 @@ class InterviewTime extends React.Component {
       }
     }
     return (
-      <TouchableOpacity
-        onPress={() => {
-          Actions.detail({
-            curTime: this.props.curTime,
-            startTime: this.f_startTime,
-            endTime: this.f_endTime,
-            interviewee: this.props.interviewee,
-            room: this.props.room
-          });
-        }}
-      >
-        <View
-          style={
-            this.state.isSelected ? styles.selectedContents : styles.contents
-          }
-        >
-          <View style={[styles.timeBox]}>
-            <Text style={[styles.startTimeText]}>{f_startTime}</Text>
-            <Text
-              style={[
-                {
-                  fontSize: 20,
-                  color: 'white'
-                }
-              ]}
-            >
-              {' '}
-              ~{' '}
-            </Text>
-            <Text style={[styles.endTimeText]}>{f_endTime}</Text>
-          </View>
-
-          <View
-            style={
-              this.state.isSelected ? styles.isSelected : styles.isNotSelected
-            }
-          />
-          <View style={[styles.intervieweeList]}>
-            <View>
-              <Text style={[styles.intervieweeListTop]}>면접자</Text>
-            </View>
-            <Text style={[styles.intervieweeText]}>
-              {this.props.interviewee}
-            </Text>
-          </View>
-
-          {this.state.isSelected ? (
-            <View style={[styles.isSelectedBall]}>
-              <Text style={styles.isSelectedBallText}>●</Text>
-            </View>
-          ) : (
-            <View style={[styles.isSelectedBall]}>
-              <Text style={styles.isNotSelectedBallText}> </Text>
-            </View>
-          )}
+      <View style={styles.contents}>
+        <View style={[styles.timeBox]}>
+          <Text style={[styles.startTimeText]}>09:00 ~ 09:30</Text>
         </View>
-      </TouchableOpacity>
+
+        <View style={[styles.intervieweeBox]}>
+          <Text style={[styles.intervieweeText]}>권태형 님</Text>
+        </View>
+      </View>
     );
   }
 }
@@ -113,57 +65,52 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 10,
-    marginBottom: 10,
-    //backgroundColor:'yellow'
-    borderTopWidth: 8,
-    borderLeftWidth: 3,
-    borderRadius: 20,
-    borderColor: '#fff'
-  },
 
-  selectedContents: {
-    width: deviceWidth - 80,
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 10,
-    marginBottom: 10,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderStyle: 'dashed',
+    borderColor: '#D1D2DE'
+    //backgroundColor: '#FFFFFF'
     //backgroundColor:'yellow'
-    borderTopWidth: 8,
-    borderLeftWidth: 3,
-    borderRadius: 20,
-    borderColor: '#ff5000'
+
+    // borderBottomWidth: 5,
+    // borderStyle: 'dotted',
+    // // borderRadius: 5,
+    // // borderTopWidth: 1,
+    // // borderLeftWidth: 1,
+
+    // borderRightWidth: 1,
+
+    // borderColor: '#fff'
   },
 
   timeBox: {
-    flex: 1.5,
+    flex: 2,
     marginLeft: 10,
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 5,
+    marginBottom: 5,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  intervieweeBox: {
+    flex: 4
   },
 
   isNotSelected: {
     flex: 0.1,
     backgroundColor: '#98ff98',
-    width: 20,
-    height: 120
+    width: 10
   },
 
   isSelected: {
     flex: 0.1,
     backgroundColor: '#ff5000',
-    width: 20,
-    height: 120
+    width: 20
   },
 
   intervieweeList: {
     flex: 5,
     //backgroundColor: 'green',
-    height: 120,
     marginLeft: 20,
     marginTop: 20
   },
@@ -171,7 +118,7 @@ const styles = StyleSheet.create({
   intervieweeListTop: {
     fontSize: 20,
     color: 'white',
-    marginBottom: 20
+    marginBottom: 10
   },
 
   intervieweeText: {

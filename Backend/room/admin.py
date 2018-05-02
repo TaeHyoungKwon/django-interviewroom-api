@@ -1,11 +1,14 @@
 from django.contrib import admin
 from .models import Room, Time
 
-admin.site.register(Room);
+
 
 
 class RoomAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ('name',)
+
+admin.site.register(Room,RoomAdmin);
+
 
 class TimeAdmin(admin.ModelAdmin):
 

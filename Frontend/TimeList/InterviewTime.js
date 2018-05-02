@@ -20,6 +20,10 @@ class InterviewTime extends React.Component {
     inRange: false
   };
 
+  componentDidMount() {}
+
+  componentWillMount() {}
+
   render() {
     var f_startTime = this.props.startTime.slice(11, 16);
     var f_endTime = this.props.endTime.slice(11, 16);
@@ -29,13 +33,15 @@ class InterviewTime extends React.Component {
     var end = new Date(this.props.endTime);
 
     if (start <= now && now < end) {
-      setInterval(() => this.setState({ isSelected: true }), 10000);
+      this.intervalCheck = setInterval(
+        () => this.setState({ isSelected: true }),
+        60000
+      );
     } else {
       if (this.state.isSelected == true) {
         this.setState({ isSelected: false });
       }
     }
-
     return (
       <TouchableOpacity
         onPress={() => {
@@ -44,7 +50,7 @@ class InterviewTime extends React.Component {
             startTime: this.f_startTime,
             endTime: this.f_endTime,
             interviewee: this.props.interviewee,
-            room: this.props.room,
+            room: this.props.room
           });
         }}
       >
@@ -54,7 +60,18 @@ class InterviewTime extends React.Component {
           }
         >
           <View style={[styles.timeBox]}>
-            <Text style={[styles.startTimeText]}>{f_startTime} ~</Text>
+            <Text style={[styles.startTimeText]}>{f_startTime}</Text>
+            <Text
+              style={[
+                {
+                  fontSize: 20,
+                  color: 'white'
+                }
+              ]}
+            >
+              {' '}
+              ~{' '}
+            </Text>
             <Text style={[styles.endTimeText]}>{f_endTime}</Text>
           </View>
 
@@ -76,7 +93,11 @@ class InterviewTime extends React.Component {
             <View style={[styles.isSelectedBall]}>
               <Text style={styles.isSelectedBallText}>●</Text>
             </View>
-          ) : null}
+          ) : (
+            <View style={[styles.isSelectedBall]}>
+              <Text style={styles.isNotSelectedBallText}> </Text>
+            </View>
+          )}
         </View>
       </TouchableOpacity>
     );
@@ -90,12 +111,14 @@ const styles = StyleSheet.create({
     width: deviceWidth - 80,
     alignItems: 'flex-start',
     flexDirection: 'row',
-    marginLeft: 40,
+    marginLeft: 20,
+    marginRight: 20,
     marginTop: 10,
     marginBottom: 10,
     //backgroundColor:'yellow'
-    borderTopWidth: 5,
-    borderLeftWidth: 1,
+    borderTopWidth: 8,
+    borderLeftWidth: 3,
+    borderRadius: 20,
     borderColor: '#fff'
   },
 
@@ -103,25 +126,29 @@ const styles = StyleSheet.create({
     width: deviceWidth - 80,
     alignItems: 'flex-start',
     flexDirection: 'row',
-    marginLeft: 40,
+    marginLeft: 20,
+    marginRight: 20,
     marginTop: 10,
     marginBottom: 10,
     //backgroundColor:'yellow'
-    borderTopWidth: 5,
-    borderLeftWidth: 1,
+    borderTopWidth: 8,
+    borderLeftWidth: 3,
+    borderRadius: 20,
     borderColor: '#ff5000'
   },
 
   timeBox: {
     flex: 1.5,
-    marginLeft: 20,
+    marginLeft: 10,
     marginTop: 20,
-    marginBottom: 20
+    marginBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 
   isNotSelected: {
     flex: 0.1,
-    backgroundColor: 'skyblue',
+    backgroundColor: '#98ff98',
     width: 20,
     height: 120
   },
@@ -148,7 +175,7 @@ const styles = StyleSheet.create({
   },
 
   intervieweeText: {
-    fontSize: 30,
+    fontSize: 25,
     color: 'white'
   },
 
@@ -179,7 +206,7 @@ const styles = StyleSheet.create({
   },
 
   isNotSelectedBallText: {
-    fontSize: 100,
-    color: 'skyblue'
+    fontSize: 80,
+    color: '#98ff98'
   }
 });

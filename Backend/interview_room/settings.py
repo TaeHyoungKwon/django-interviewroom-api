@@ -130,6 +130,6 @@ STATICFILES_DIRS = (
 )
 
 
-admin.site.site_title="Smilegate Interview Room"
-admin.site.site_header = "Smilegate Interview Room"
-admin.site.index_title = "면접실 & 면접 시간표 관리"
+#admin.site.site_title="SGE 면접실 관리자"
+admin.site.site_header = "SGE 면접실 관리자"
+admin.site.index_title = " "

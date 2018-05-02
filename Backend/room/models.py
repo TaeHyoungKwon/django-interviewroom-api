@@ -23,8 +23,8 @@ class Room(models.Model):
         return str(self.name)
 
     class Meta:
-        verbose_name = ("면접실")
-        verbose_name_plural = ("면접실")
+        verbose_name = ("면접실 관리")
+        verbose_name_plural = ("면접실 관리")
     
 
 class Time(models.Model):
@@ -57,12 +57,12 @@ class Time(models.Model):
     
     interviewee = models.TextField(
         verbose_name='면접자',
-        help_text="공백을 기준으로 입력하세요. ex)면접자1 면접자2 면접자3 ..."
+        help_text="ex)면접자1 면접자2 면접자3 ..."
         )
 
     interviewer = models.TextField(
         verbose_name='면접관',
-        help_text="공백을 기준으로 입력하세요. ex)면접관1 면접관2 면접관3 ..."
+        help_text="ex)면접관1 면접관2 면접관3 ..."
         )
     
     updated_at = models.DateTimeField(auto_now=True)
@@ -75,6 +75,6 @@ class Time(models.Model):
         return str(self.room) + ": " + "("+ f_start_t + " ~ " + f_end_t +")"
 
     class Meta:
-        verbose_name = ("면접 시간표")
-        verbose_name_plural = ("면접 시간표")
+        verbose_name = ("면접시간 관리")
+        verbose_name_plural = ("면접시간 관리")
 

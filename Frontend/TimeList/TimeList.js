@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 
 import Actions from 'react-native-router-flux';
 
@@ -118,7 +118,16 @@ export default class TimeList extends React.Component {
           <Text style={[styles.roomTitleText]}>{this.props.name}</Text>
         </View>
 
-        <ScrollView style={styles.scroll}>{lists}</ScrollView>
+        <View style={styles.scroll}>
+          <ScrollView>{lists}</ScrollView>
+        </View>
+
+        <View style={styles.bottom}>
+          <Image
+            style={styles.bottomImage}
+            source={require('../images/smilegate_mark.png')}
+          />
+        </View>
       </View>
     );
   }
@@ -131,6 +140,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#17273d'
   },
+
   roomTitle: {
     alignItems: 'center',
     width: '100%',
@@ -138,11 +148,19 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingBottom: 50
   },
+
   roomTitleText: {
     fontSize: 40,
     fontWeight: 'bold',
     color: 'white'
   },
+
+  scroll: {
+    flex: 5,
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+
   time: {
     alignItems: 'center',
     width: '100%',
@@ -152,5 +170,10 @@ const styles = StyleSheet.create({
     fontSize: 50,
     fontWeight: 'bold',
     color: 'white'
+  },
+  bottom: {
+    flex: 0.8,
+    justifyContent: 'flex-end',
+    paddingBottom: 30
   }
 });

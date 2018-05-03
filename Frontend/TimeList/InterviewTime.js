@@ -17,6 +17,7 @@ import { Actions } from 'react-native-router-flux';
 class InterviewTime extends React.Component {
   state = {
     isSelected: false,
+    timeSelected: false,
     inRange: false
   };
 
@@ -25,12 +26,22 @@ class InterviewTime extends React.Component {
   componentWillMount() {}
 
   render() {
-    var f_startTime = this.props.startTime.slice(11, 16);
-    var f_endTime = this.props.endTime.slice(11, 16);
+    var f_startTime = this.props.fullStartTime;
+    var f_endTime = this.props.fullEndTime;
 
     var now = new Date();
-    var start = new Date(this.props.startTime);
-    var end = new Date(this.props.endTime);
+    var start = new Date(f_startTime);
+    var end = new Date(f_endTime);
+
+    start.setHours(start.getHours() - 9);
+    end.setHours(end.getHours() - 9);
+
+    console.log(now);
+    console.log(start);
+    console.log(end);
+
+    console.log(start <= now);
+    console.log(now < end);
 
     if (start <= now && now < end) {
       this.intervalCheck = setInterval(
@@ -42,15 +53,69 @@ class InterviewTime extends React.Component {
         this.setState({ isSelected: false });
       }
     }
+    nowHours = now.getHours();
+    nowMinutes = now.getMinutes();
+
+    if (Number(nowHours) < 10) {
+      var formattedNow = '0' + nowHours + ':' + nowMinutes;
+    } else {
+      var formattedNow = nowHours + ':' + nowMinutes;
+    }
+
+    console.log('111111111');
+    console.log(formattedNow);
+    console.log(this.props.startTime);
+    console.log(this.props.endTime);
+
+    console.log(
+      this.props.startTime <= formattedNow && formattedNow < this.props.endTime
+    );
+    console.log('111111111');
+
+    if (
+      this.props.startTime <= formattedNow &&
+      formattedNow < this.props.endTime
+    ) {
+      this.intervalCheck = setInterval(
+        () => this.setState({ timeSelected: true }),
+        60000
+      );
+    } else {
+      if (this.state.timeSelected == true) {
+        this.setState({ timeSelected: false });
+      }
+    }
+
+    // var new_start = new Date(start.getTime() + 30 * 60000);
+
+    // if (start <= now && now <= new_start && now.getMinutes()) {
+    //   this.intervalCheck = setInterval(
+    //     () => this.setState({ timeSelected: true }),
+    //     100000
+    //   );
+    // } else {
+    //   if (this.state.timeSelected == true) {
+    //     this.setState({ timeSelected: false });
+    //   }
+    // }
     return (
       <View style={styles.contents}>
-        <View style={[styles.timeBox]}>
-          <Text style={[styles.startTimeText]}>09:00 ~ 09:30</Text>
+        <View
+          style={this.state.isSelected ? styles.coloredTimeBox : styles.timeBox}
+        >
+          <Text style={[styles.startTimeText]}>
+            {this.props.startTime} ~ {this.props.endTime}{' '}
+          </Text>
         </View>
 
         <View style={[styles.intervieweeBox]}>
-          <Text style={[styles.intervieweeText]}>권태형 님</Text>
+          <Text style={[styles.intervieweeText]}>{this.props.interviewee}</Text>
         </View>
+        {this.state.timeSelected ? (
+          <View style={[styles.isSelectedBall]}>
+            <Text style={styles.isSelectedBallText}>●</Text>
+          </View>
+        ) : null}
       </View>
     );
   }
@@ -91,6 +156,15 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  coloredTimeBox: {
+    flex: 2,
+    marginLeft: 10,
+    marginTop: 5,
+    marginBottom: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'red'
   },
   intervieweeBox: {
     flex: 4
